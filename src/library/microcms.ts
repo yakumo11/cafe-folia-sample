@@ -5,15 +5,17 @@ export const microcmsClient = createClient({
   apiKey: import.meta.env.MICROCMS_API_KEY,
 });
 
+// src/library/microcms.ts
+
 export type Menu = {
   id: string;
   title: string;
+  content: string; // もし管理画面で「内容」がある場合
   price: string;
-  image?: {
+  image: {
     url: string;
-    width?: number;
-    height?: number;
   };
+  category: string[]; // ← これを追加！(セレクト形式は配列で返ってくる仕様のため)
 };
 
 export type ShopInfo = {
