@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Serif JP", system-ui, -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", sans-serif;
+  line-height: 1.8;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Shippori Mincho", "Noto Serif JP", serif;
+  letter-spacing: 0.08em;
+}
+
+p {
+  line-height: 1.9;
+}
+
+section {
+  scroll-margin-top: 5rem;
+}

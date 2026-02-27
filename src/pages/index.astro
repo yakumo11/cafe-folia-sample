@@ -1,11 +1,293 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import {
+  microcmsClient,
+  type Menu,
+  getShopInfo,
+  type ShopInfo,
+} from "../library/microcms";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const [{ contents: menus }, shopInfo] = await Promise.all([
+  microcmsClient.getList<Menu>({
+    endpoint: "menus",
+    queries: {
+      limit: 12,
+    },
+  }),
+  getShopInfo(),
+]);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Cafe Folia | 都会の喧騒を忘れる一杯を">
+  <section
+    id="hero"
+    class="relative flex min-h-screen items-center justify-center bg-[#2b1810] text-white"
+  >
+    <img
+      src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      alt="木のテーブルとラテアートのコーヒーカップ"
+      class="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#3b2419]/90"
+    >
+    </div>
+
+    <div
+      class="relative z-10 mx-auto flex max-w-5xl flex-col gap-8 px-6 pt-32 pb-28 md:flex-row md:items-center md:px-8"
+    >
+      <div class="md:w-2/3">
+        <p class="text-xs uppercase tracking-[0.35em] text-[#f5ebe0]/85">
+          CAFE FOLIA
+        </p>
+        <h1
+          class="mt-5 font-serif text-4xl leading-snug md:text-5xl lg:text-6xl md:leading-relaxed"
+        >
+          都会の喧騒を忘れる一杯を
+        </h1>
+        <p
+          class="mt-5 max-w-xl text-sm leading-relaxed text-[#f7e9d8] md:text-base md:leading-loose"
+        >
+          オフィス街のすぐそばで、ほんの少しだけ時間の流れがゆるやかになる場所。
+          深煎りコーヒーの香りと、手作りのスイーツ、あたたかな木のぬくもりに包まれて、
+          ひと息つきませんか。
+        </p>
+        <div
+          class="mt-7 flex flex-col gap-3 text-sm md:flex-row md:items-center"
+        >
+          <a
+            href="#menu"
+            class="inline-flex items-center justify-center rounded-full bg-[#f5ebe0] px-7 py-3 font-medium text-[#3f241b] shadow-md shadow-black/30 transition hover:bg-white/95"
+          >
+            メニューを見る
+          </a>
+          <span class="text-xs text-[#f5ebe0]/90 md:ml-4">
+            本日のコーヒー 600円〜 / 自家製ケーキ 680円〜
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-10 hidden md:block md:w-1/3">
+        <div
+          class="rounded-3xl border border-white/15 bg-white/5 p-4 backdrop-blur"
+        >
+          <p class="text-xs uppercase tracking-[0.3em] text-[#f5ebe0]/70">
+            TODAY&apos;S BREW
+          </p>
+          <p class="mt-3 font-serif text-lg">エチオピア ナチュラル</p>
+          <p class="mt-1 text-xs text-[#f7e9d8]/80">
+            ベリーのような甘さと華やかな香り。ゆっくりと長く続く余韻をお楽しみください。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-center text-[10px] tracking-[0.35em] text-[#f5ebe0]/80"
+    >
+      SCROLL
+      <div
+        class="mx-auto mt-2 h-8 w-px bg-gradient-to-b from-transparent via-[#f5ebe0]/80 to-transparent"
+      >
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="bg-[#f5ebe0]">
+    <div class="mx-auto max-w-5xl px-6 py-20 md:px-8 md:py-28">
+      <div
+        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+      >
+        <div>
+          <h2 class="font-serif text-2xl text-[#3f241b] md:text-3xl">Menu</h2>
+          <p class="mt-3 text-sm leading-relaxed text-[#7b5a44] md:text-base">
+            その日の気分に寄り添う、Cafe Foliaの定番メニューです。
+          </p>
+        </div>
+        <p class="text-xs text-[#8b6a54]">表示価格はすべて税込みです。</p>
+      </div>
+
+      <div class="mt-12 grid gap-9 md:grid-cols-3">
+        {
+          menus.length === 0 && (
+            <p class="text-sm text-[#8b6a54] md:col-span-3">
+              現在準備中のメニューです。少々お待ちください。
+            </p>
+          )
+        }
+
+        {
+          menus.map((menu) => (
+            <article class="group flex flex-col overflow-hidden rounded-3xl bg-white/90 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80 transition hover:-translate-y-1 hover:shadow-md hover:shadow-[#c0a790]/70">
+              <div class="relative h-40 w-full overflow-hidden bg-[#4b2f23]">
+                {menu.image && (
+                  <img
+                    src={menu.image.url}
+                    alt={menu.title}
+                    loading="lazy"
+                    class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
+                  />
+                )}
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(245,235,224,0.4),transparent),radial-gradient(circle_at_80%_120%,rgba(171,111,63,0.9),transparent)] mix-blend-multiply" />
+                <p class="relative z-10 flex h-full items-end px-5 pb-4 font-serif text-lg text-[#fdf7f1] drop-shadow">
+                  {menu.title}
+                </p>
+              </div>
+              <div class="flex flex-1 flex-col gap-4 px-5 py-6">
+                <dl class="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+                  <dt class="text-xs uppercase tracking-[0.2em] text-[#b09073]">
+                    Price
+                  </dt>
+                  <dd class="font-medium text-[#3f241b]">{menu.price}</dd>
+                </dl>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="info" class="bg-[#f0e2d3]">
+    <div class="mx-auto max-w-5xl px-6 py-20 md:px-8 md:py-28">
+      <div
+        class="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-start"
+      >
+        <div>
+          <h2 class="font-serif text-2xl text-[#3f241b] md:text-3xl">
+            店舗情報
+          </h2>
+          {
+            (shopInfo.concept_title || shopInfo.concept_text) && (
+              <div class="mt-4">
+                {shopInfo.concept_title && (
+                  <h3 class="text-sm font-semibold text-[#3f241b] md:text-base">
+                    {shopInfo.concept_title}
+                  </h3>
+                )}
+                {shopInfo.concept_text && (
+                  <p class="mt-2 text-sm leading-relaxed text-[#7b5a44] md:text-base">
+                    {shopInfo.concept_text}
+                  </p>
+                )}
+              </div>
+            )
+          }
+
+          <dl class="mt-9 space-y-5 text-sm md:text-base">
+            <div class="flex flex-col gap-1 md:flex-row md:gap-6">
+              <dt
+                class="w-24 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-[#b09073]"
+              >
+                Address
+              </dt>
+              <dd class="text-[#3f241b]">
+                {shopInfo.address}
+              </dd>
+            </div>
+
+            <div class="flex flex-col gap-1 md:flex-row md:gap-6">
+              <dt
+                class="w-24 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-[#b09073]"
+              >
+                Hours
+              </dt>
+              <dd class="text-[#3f241b]">
+                {shopInfo.business_hours}
+              </dd>
+            </div>
+
+            <div class="flex flex-col gap-1 md:flex-row md:gap-6">
+              <dt
+                class="w-24 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-[#b09073]"
+              >
+                Tel
+              </dt>
+              <dd class="text-[#3f241b]">{shopInfo.phone}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div
+          class="space-y-4 rounded-3xl bg-[#f7ecdf] p-6 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80"
+        >
+          <p class="text-xs uppercase tracking-[0.25em] text-[#b09073]">
+            ACCESS
+          </p>
+          {
+            shopInfo.Maps_embed && (
+              <>
+                {/* 地図エリア */}
+                <div class="mt-4 overflow-hidden rounded-2xl border border-[#e1d3c4] bg-white/60">
+                  <div class="relative w-full overflow-hidden pt-[70%]">
+                    <div
+                      class="absolute inset-0 scale-[1.3] translate-x-[5%] translate-y-[15%] [&>iframe]:absolute [&>iframe]:inset-0 [&>iframe]:h-full [&>iframe]:w-full"
+                      set:html={shopInfo.Maps_embed}
+                    />
+                  </div>
+                </div>
+
+                {/* 【ここに追加】ボタンエリア */}
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Cafe+Folia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 min-w-[140px] flex items-center justify-center gap-2 rounded-xl bg-white/80 py-2.5 text-xs font-medium text-[#8b6a54] shadow-sm ring-1 ring-[#e1d3c4] transition-all hover:bg-white"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <>
+                        <path d="M15 3h6v6" />
+                        <path d="M10 14 21 3" />
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      </>
+                    </svg>
+                    大きな地図で見る
+                  </a>
+
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Cafe+Folia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 min-w-[140px] flex items-center justify-center gap-2 rounded-xl bg-[#8b6a54] py-2.5 text-xs font-medium text-white shadow-sm transition-all hover:bg-[#7a5d4a]"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                    </svg>
+                    ここからのルート
+                  </a>
+                </div>
+              </>
+            )
+          }
+          <p class="text-[11px] text-[#8b6a54]">
+            実際の地図が正しく表示されない場合は、Googleマップで「Cafe
+            Folia」を検索してください。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

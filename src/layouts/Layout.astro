@@ -1,23 +1,63 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+}
+
+const { title = "Cafe Folia" } = Astro.props as Props;
+---
+
+<html lang="ja" class="h-full scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body class="min-h-screen bg-[#f5ebe0] text-[#3f2a24] antialiased">
+    <div class="flex min-h-screen flex-col">
+      <header
+        class="fixed inset-x-0 top-0 z-30 border-b border-white/40 bg-[#f5ebe0]/80 backdrop-blur"
+      >
+        <div
+          class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 md:py-4"
+        >
+          <a
+            href="/"
+            class="font-serif text-lg tracking-[0.25em] uppercase text-[#5a3b2c]"
+          >
+            Cafe Folia
+          </a>
+          <nav
+            class="hidden items-center gap-6 text-[11px] uppercase tracking-[0.22em] text-[#8a6a53] md:flex"
+          >
+            <a href="#menu" class="transition hover:text-[#5a3b2c]">Menu</a>
+            <a href="#info" class="transition hover:text-[#5a3b2c]">Access</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <footer class="mt-16 border-t border-[#e1d3c4] bg-[#f3e5d8]/95">
+        <div
+          class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-[#6e5240] md:flex-row"
+        >
+          <p class="tracking-wide">© 2026 Cafe Folia. All rights reserved.</p>
+          <p class="text-[11px]">
+            Crafted with warm lights, soft music, and good coffee.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
