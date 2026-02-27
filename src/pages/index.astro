@@ -287,6 +287,88 @@ const [{ contents: menus }, shopInfo] = await Promise.all([
             Folia」を検索してください。
           </p>
         </div>
+
+        <section id="contact" class="mt-20 px-6 max-w-2xl mx-auto">
+          <div
+            class="bg-white/60 backdrop-blur-sm rounded-3xl p-8 shadow-xl shadow-[#d2bfaa]/20 border border-white/80"
+          >
+            <h2 class="text-2xl font-serif text-[#8b6a54] text-center mb-6">
+              Contact
+            </h2>
+            <p class="text-sm text-[#8b6a54]/80 text-center mb-8">
+              ご予約・お申し込みは以下のフォームよりお気軽にご連絡ください。
+            </p>
+
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              class="space-y-4"
+            >
+              <div>
+                <label
+                  class="block text-xs font-medium text-[#b09073] mb-1 ml-1"
+                  >お名前</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  class="w-full rounded-xl border-[#e1d3c4] bg-white/50 p-3 text-sm focus:ring-[#b09073] focus:border-[#b09073] outline-none transition-all"
+                  placeholder="山田 太郎"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs font-medium text-[#b09073] mb-1 ml-1"
+                  >メールアドレス</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="w-full rounded-xl border-[#e1d3c4] bg-white/50 p-3 text-sm focus:ring-[#b09073] focus:border-[#b09073] outline-none transition-all"
+                  placeholder="example@mail.com"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs font-medium text-[#b09073] mb-1 ml-1"
+                  >ご希望のメニュー</label
+                >
+                <select
+                  name="menu"
+                  class="w-full rounded-xl border-[#e1d3c4] bg-white/50 p-3 text-sm focus:ring-[#b09073] focus:border-[#b09073] outline-none transition-all"
+                >
+                  <option>コーヒー豆の購入</option>
+                  <option>ワークショップ参加</option>
+                  <option>その他</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  class="block text-xs font-medium text-[#b09073] mb-1 ml-1"
+                  >メッセージ</label
+                >
+                <textarea
+                  name="message"
+                  rows="4"
+                  class="w-full rounded-xl border-[#e1d3c4] bg-white/50 p-3 text-sm focus:ring-[#b09073] focus:border-[#b09073] outline-none transition-all"
+                  placeholder="ご質問などあればご記入ください"></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-[#8b6a54] text-white font-medium py-3 rounded-xl shadow-lg hover:bg-[#7a5d4a] transition-all transform active:scale-[0.98]"
+              >
+                この内容で送信する
+              </button>
+            </form>
+          </div>
+        </section>
       </div>
     </div>
   </section>
