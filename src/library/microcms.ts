@@ -26,6 +26,7 @@ export type ShopInfo = {
   concept_title: string;
   concept_text: string;
   Maps_embed?: string;
+  payment_methods?: string[];
 };
 
 export const getShopInfo = async () => {

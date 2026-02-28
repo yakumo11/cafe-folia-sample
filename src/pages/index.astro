@@ -363,6 +363,26 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
               </dt>
               <dd class="text-[#3f241b]">{shopInfo.phone}</dd>
             </div>
+
+            {shopInfo.payment_methods && shopInfo.payment_methods.length > 0 && (
+              <div class="flex flex-col gap-2 md:flex-row md:gap-6">
+                <dt
+                  class="w-24 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-[#b09073]"
+                >
+                  Payment
+                </dt>
+                <dd class="flex flex-wrap gap-2">
+                  {shopInfo.payment_methods.map((method) => (
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-[#f5ebe0] px-3 py-1 text-xs font-medium text-[#5a3b2c] ring-1 ring-[#d2bfaa]/60">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#b09073]">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      {method}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            )}
           </dl>
         </div>
 
