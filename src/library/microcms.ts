@@ -40,3 +40,13 @@ export type News = {
   content: string;
   publishedAt: string; // microCMSが自動で付与する日付
 };
+
+export type Staff = {
+  id: string;
+  name: string;
+  role: string;
+  image: {
+    url: string;
+  };
+  message: string;
+};

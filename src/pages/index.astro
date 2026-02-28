@@ -3,13 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import {
   microcmsClient,
   type Menu,
-  type News, // ← ここに News を追加しました
+  type News,
+  type Staff,
   getShopInfo,
 } from "../library/microcms";
 
-const [{ contents: menus }, { contents: news }, shopInfo] = await Promise.all([
+const [{ contents: menus }, { contents: news }, { contents: staff }, shopInfo] = await Promise.all([
   microcmsClient.getList<Menu>({ endpoint: "menus", queries: { limit: 100 } }),
   microcmsClient.getList<News>({ endpoint: "news", queries: { limit: 3 } }),
+  microcmsClient.getList<Staff>({ endpoint: "staff", queries: { limit: 100 } }),
   getShopInfo(),
 ]);
 
@@ -258,6 +260,47 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
               </div>
             </div>
           )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="staff" class="bg-[#f5ebe0]">
+    <div class="mx-auto max-w-5xl px-6 py-20 md:px-8 md:py-28">
+      <div
+        class="flex items-baseline justify-between border-b border-[#d2bfaa] pb-4"
+      >
+        <h2 class="font-serif text-2xl text-[#3f241b] md:text-3xl">Staff</h2>
+        <span class="text-xs text-[#8b6a54] uppercase tracking-widest"
+          >スタッフ紹介</span
+        >
+      </div>
+
+      <div class="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {
+          staff.map((member) => (
+            <article class="flex flex-col items-center rounded-3xl bg-white/90 px-6 py-8 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80">
+              <div class="h-28 w-28 overflow-hidden rounded-full bg-[#e1d3c4] ring-4 ring-[#f5ebe0]">
+                {member.image && (
+                  <img
+                    src={member.image.url}
+                    alt={member.name}
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                  />
+                )}
+              </div>
+              <h3 class="mt-5 font-serif text-lg text-[#3f241b]">
+                {member.name}
+              </h3>
+              <p class="mt-1 text-xs uppercase tracking-[0.2em] text-[#b09073]">
+                {member.role}
+              </p>
+              <p class="mt-4 text-center text-sm leading-relaxed text-[#7b5a44]">
+                {member.message}
+              </p>
+            </article>
+          ))
         }
       </div>
     </div>
