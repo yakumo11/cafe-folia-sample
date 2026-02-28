@@ -35,10 +35,10 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
       alt="木のテーブルとラテアートのコーヒーカップ"
       width={1600}
       height={1067}
-      widths={[480, 768, 1200, 1600]}
-      sizes="100vw"
+      widths={[400, 800, 1200]}
+      sizes="(max-width: 640px) 400px, 800px"
       format="webp"
-      quality="mid"
+      quality={80}
       class="absolute inset-0 h-full w-full object-cover"
       loading="eager"
       fetchpriority="high"
@@ -177,7 +177,7 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                           widths={[300, 400, 600]}
                           sizes="(min-width: 768px) 33vw, 100vw"
                           format="webp"
-                          quality="mid"
+                          quality={80}
                           loading="lazy"
                           class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                         />
@@ -221,7 +221,7 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                           widths={[300, 400, 600]}
                           sizes="(min-width: 768px) 33vw, 100vw"
                           format="webp"
-                          quality="mid"
+                          quality={80}
                           loading="lazy"
                           class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                         />
@@ -265,7 +265,7 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                           widths={[300, 400, 600]}
                           sizes="(min-width: 768px) 33vw, 100vw"
                           format="webp"
-                          quality="mid"
+                          quality={80}
                           loading="lazy"
                           class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                         />
@@ -316,7 +316,7 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                     width={224}
                     height={224}
                     format="webp"
-                    quality="mid"
+                    quality={80}
                     loading="lazy"
                     class="h-full w-full object-cover"
                   />
