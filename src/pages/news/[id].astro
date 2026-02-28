@@ -13,9 +13,13 @@ export async function getStaticPaths() {
 
 // 2. 記事の詳細データを取得
 const { item } = Astro.props;
+
+// 本文HTMLからタグを除去し、先頭120文字を description として使用
+const plainText = item.content.replace(/<[^>]*>/g, "").trim();
+const description = plainText.length > 120 ? plainText.slice(0, 120) + "…" : plainText;
 ---
 
-<Layout title={`${item.title} | Cafe Folia News`}>
+<Layout title={`${item.title} | Cafe Folia News`} description={description}>
     <main class="bg-[#f5ebe0] min-h-screen pt-32 pb-20 px-6">
         <article
             class="mx-auto max-w-3xl bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl shadow-[#d2bfaa]/20 border border-white/80"
