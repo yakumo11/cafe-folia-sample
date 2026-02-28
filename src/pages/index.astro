@@ -370,9 +370,7 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
               >
                 Payment
               </dt>
-              <dd class="text-[#3f241b]">
-                {shopInfo.payment_methods}
-              </dd>
+              <dd class="text-[#3f241b]" set:html={shopInfo.payment_methods} />
             </div>
           </dl>
         </div>
