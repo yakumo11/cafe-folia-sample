@@ -33,3 +33,10 @@ export const getShopInfo = async () => {
     endpoint: 'shop_info',
   });
 };
+
+export type News = {
+  id: string;
+  title: string;
+  content: string;
+  publishedAt: string; // microCMSが自動で付与する日付
+};
