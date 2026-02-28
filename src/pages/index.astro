@@ -96,12 +96,12 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
     </div>
   </section>
 
-  <section id="news" class="bg-[#f5ebe0] pt-20 px-6">
-    <div class="mx-auto max-w-5xl">
+  <section id="news" class="bg-[#f5ebe0] pt-20">
+    <div class="mx-auto max-w-5xl px-6 md:px-8">
       <div
         class="flex items-baseline justify-between border-b border-[#d2bfaa] pb-4"
       >
-        <h2 class="font-serif text-2xl text-[#3f241b]">News</h2>
+        <h2 class="font-serif text-2xl text-[#3f241b] md:text-3xl">News</h2>
         <span class="text-xs text-[#8b6a54] uppercase tracking-widest"
           >お知らせ</span
         >
@@ -133,16 +133,17 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
   <section id="menu" class="bg-[#f5ebe0]">
     <div class="mx-auto max-w-5xl px-6 py-20 md:px-8 md:py-28">
       <div
-        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+        class="flex items-baseline justify-between border-b border-[#d2bfaa] pb-4"
       >
-        <div>
-          <h2 class="font-serif text-2xl text-[#3f241b] md:text-3xl">Menu</h2>
-          <p class="mt-3 text-sm leading-relaxed text-[#7b5a44] md:text-base">
-            その日の気分に寄り添う、Cafe Foliaの定番メニューです。
-          </p>
-        </div>
-        <p class="text-xs text-[#8b6a54]">表示価格はすべて税込みです。</p>
+        <h2 class="font-serif text-2xl text-[#3f241b] md:text-3xl">Menu</h2>
+        <span class="text-xs text-[#8b6a54] uppercase tracking-widest"
+          >メニュー</span
+        >
       </div>
+      <p class="mt-4 text-sm leading-relaxed text-[#7b5a44] md:text-base">
+        その日の気分に寄り添う、Cafe Foliaの定番メニューです。
+      </p>
+      <p class="mt-2 text-xs text-[#8b6a54]">表示価格はすべて税込みです。</p>
 
       <div class="mt-12 space-y-16">
         {
