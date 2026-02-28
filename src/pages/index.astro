@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import {
   microcmsClient,
   type Menu,
@@ -29,9 +30,13 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
     id="hero"
     class="relative flex min-h-screen items-center justify-center bg-[#2b1810] text-white"
   >
-    <img
+    <Image
       src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1600"
       alt="木のテーブルとラテアートのコーヒーカップ"
+      width={1600}
+      height={1067}
+      format="webp"
+      quality="mid"
       class="absolute inset-0 h-full w-full object-cover"
       loading="eager"
       fetchpriority="high"
@@ -162,9 +167,13 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                   <article class="group flex flex-col overflow-hidden rounded-3xl bg-white/90 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80 transition hover:-translate-y-1 hover:shadow-md hover:shadow-[#c0a790]/70">
                     <div class="relative h-40 w-full overflow-hidden bg-[#4b2f23]">
                       {menu.image && (
-                        <img
+                        <Image
                           src={menu.image.url}
                           alt={menu.title}
+                          width={400}
+                          height={160}
+                          format="webp"
+                          quality="mid"
                           loading="lazy"
                           class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                         />
@@ -200,9 +209,13 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                   <article class="group flex flex-col overflow-hidden rounded-3xl bg-white/90 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80 transition hover:-translate-y-1 hover:shadow-md hover:shadow-[#c0a790]/70">
                     <div class="relative h-40 w-full overflow-hidden bg-[#4b2f23]">
                       {menu.image && (
-                        <img
+                        <Image
                           src={menu.image.url}
                           alt={menu.title}
+                          width={400}
+                          height={160}
+                          format="webp"
+                          quality="mid"
                           loading="lazy"
                           class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                         />
@@ -238,9 +251,13 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
                   <article class="group flex flex-col overflow-hidden rounded-3xl bg-white/90 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80 transition hover:-translate-y-1 hover:shadow-md hover:shadow-[#c0a790]/70">
                     <div class="relative h-40 w-full overflow-hidden bg-[#4b2f23]">
                       {menu.image && (
-                        <img
+                        <Image
                           src={menu.image.url}
                           alt={menu.title}
+                          width={400}
+                          height={160}
+                          format="webp"
+                          quality="mid"
                           loading="lazy"
                           class="absolute inset-0 h-full w-full object-cover opacity-80 transition group-hover:opacity-100"
                         />
@@ -285,9 +302,13 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
             <article class="flex flex-col items-center rounded-3xl bg-white/90 px-6 py-8 shadow-sm shadow-[#d2bfaa]/60 ring-1 ring-white/80">
               <div class="h-28 w-28 overflow-hidden rounded-full bg-[#e1d3c4] ring-4 ring-[#f5ebe0]">
                 {member.image && (
-                  <img
+                  <Image
                     src={member.image.url}
                     alt={member.name}
+                    width={224}
+                    height={224}
+                    format="webp"
+                    quality="mid"
                     loading="lazy"
                     class="h-full w-full object-cover"
                   />
