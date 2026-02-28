@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import heroImage from "../assets/hero.jpg";
 import {
   microcmsClient,
   type Menu,
@@ -31,10 +32,8 @@ const takeoutMenus = menus.filter((menu) => menu.category?.includes("takeout"));
     class="relative flex min-h-screen items-center justify-center bg-[#2b1810] text-white"
   >
     <Image
-      src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      src={heroImage}
       alt="木のテーブルとラテアートのコーヒーカップ"
-      width={1600}
-      height={1067}
       widths={[400, 800, 1200]}
       sizes="(max-width: 640px) 400px, 800px"
       format="webp"
