@@ -1,0 +1,48 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { microcmsClient, type News } from "../../library/microcms";
+
+// 1. サーバーサイドで全記事のIDを取得して、個別のURLを生成する
+export async function getStaticPaths() {
+    const response = await microcmsClient.getList<News>({ endpoint: "news" });
+    return response.contents.map((item) => ({
+        params: { id: item.id },
+        props: { item },
+    }));
+}
+
+// 2. 記事の詳細データを取得
+const { item } = Astro.props;
+---
+
+<Layout title={`${item.title} | Cafe Folia News`}>
+    <main class="bg-[#f5ebe0] min-h-screen pt-32 pb-20 px-6">
+        <article
+            class="mx-auto max-w-3xl bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl shadow-[#d2bfaa]/20 border border-white/80"
+        >
+            <time class="text-xs text-[#b09073] font-mono"
+                >{new Date(item.publishedAt).toLocaleDateString("ja-JP")}</time
+            >
+            <h1
+                class="text-2xl md:text-3xl font-serif text-[#3f241b] mt-4 mb-8 leading-relaxed"
+            >
+                {item.title}
+            </h1>
+
+            {/* リッチエディタの内容を表示 */}
+            <div
+                class="prose prose-stone max-w-none text-[#7b5a44] leading-loose space-y-4"
+                set:html={item.content}
+            />
+
+            <div class="mt-12 pt-8 border-t border-[#d2bfaa]/50">
+                <a
+                    href="/"
+                    class="text-sm text-[#8b6a54] hover:text-[#3f241b] transition-colors flex items-center gap-2"
+                >
+                    ← トップページへ戻る
+                </a>
+            </div>
+        </article>
+    </main>
+</Layout>
