@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia diff --stat)",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia diff)",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia add:*)",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia commit -m \"$\\(cat <<''EOF''\nfix: change payment_methods type to string and unify display style\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia push)",
+      "Bash(curl:*)",
+      "Bash(python3:*)",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia commit -m \"$\\(cat <<''EOF''\nfix: render payment_methods HTML from microCMS rich editor\n\nThe field returns HTML \\(e.g. <p>...</p>\\) so set:html is needed\ninstead of text interpolation which escapes the tags.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia commit -m \"$\\(cat <<''EOF''\nfeat: add meta description for SEO across all pages\n\n- Layout accepts description prop with sensible default\n- index.astro passes a tailored 120-char description\n- news/[id].astro extracts plain text from article body for description\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(npx astro:*)",
+      "Bash(node -e:*)",
+      "Bash(git -C /Users/yakumo/WebProjects/caffe-folia commit -m \"$\\(cat <<''EOF''\nfeat: optimize images with Astro Image component\n\n- Configure allowed remote domains \\(pexels, microcms-assets\\)\n- Replace all <img> with <Image> using format=\"webp\" and quality=\"mid\"\n- Set explicit width/height to prevent layout shift\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(npm i:*)",
+      "Bash(sudo npm i:*)",
+      "Bash(claude doctor:*)"
+    ]
+  }
+}

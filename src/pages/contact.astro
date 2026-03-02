@@ -8,9 +8,7 @@ import Layout from "../layouts/Layout.astro";
 >
   <!-- ページヘッダー -->
   <section class="bg-[#2b1810] pt-32 pb-16 text-center text-white">
-    <p class="text-xs uppercase tracking-[0.35em] text-[#f5ebe0]/70">
-      Contact
-    </p>
+    <p class="text-xs uppercase tracking-[0.35em] text-[#f5ebe0]/70">Contact</p>
     <h1 class="mt-4 font-serif text-3xl text-[#fdf7f1] md:text-4xl">
       お問い合わせ
     </h1>
@@ -30,14 +28,14 @@ import Layout from "../layouts/Layout.astro";
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          action="/contact/thanks"
+          action="/contact/thanks/"
           class="space-y-6"
         >
           <!-- Netlify 必須の隠しフィールド -->
           <input type="hidden" name="form-name" value="contact" />
 
           <!-- ハニーポット（スパム対策） -->
-          <p class="hidden">
+          <p class="hidden" style="display:none;">
             <label>
               Don't fill this out if you're human:
               <input name="bot-field" />
@@ -121,8 +119,7 @@ import Layout from "../layouts/Layout.astro";
 
           <!-- 注記 -->
           <p class="text-[11px] leading-relaxed text-[#b09073]">
-            <span class="text-[#c0796a]">*</span> は必須項目です。
-            内容確認後、2〜3営業日以内にご返信いたします。
+            <span class="text-[#c0796a]">*</span> は必須項目です。 内容確認後、2〜3営業日以内にご返信いたします。
           </p>
 
           <!-- 送信ボタン -->
