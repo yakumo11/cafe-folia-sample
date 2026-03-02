@@ -2,7 +2,11 @@
   command = "npm run build"
   publish = "dist"
 
-# ハッシュ付きAstroアセット（JS/CSS/画像）— コンテンツが変わればURLも変わるため長期キャッシュ可
+# Netlifyにフォームの検出を強制的に意識させる設定
+[preprocessing]
+  forms = true
+
+# ハッシュ付きAstroアセット（JS/CSS/画像）— 長期キャッシュ可
 [[headers]]
   for = "/_astro/*"
   [headers.values]
@@ -24,7 +28,7 @@
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
-# HTMLは常に最新を取得
+# HTMLは常に最新を取得（フォームの認識を助けるためにも重要）
 [[headers]]
   for = "/*.html"
   [headers.values]
