@@ -1,0 +1,149 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="お問い合わせ | Cafe Folia"
+  description="Cafe Folia へのご予約・ご質問は、こちらのお問い合わせフォームからお気軽にどうぞ。"
+>
+  <!-- ページヘッダー -->
+  <section class="bg-[#2b1810] pt-32 pb-16 text-center text-white">
+    <p class="text-xs uppercase tracking-[0.35em] text-[#f5ebe0]/70">
+      Contact
+    </p>
+    <h1 class="mt-4 font-serif text-3xl text-[#fdf7f1] md:text-4xl">
+      お問い合わせ
+    </h1>
+    <p class="mt-4 text-sm text-[#f7e9d8]/75">
+      ご予約・ご質問など、お気軽にご連絡ください。
+    </p>
+  </section>
+
+  <!-- フォームセクション -->
+  <section class="bg-[#f5ebe0] px-6 py-20">
+    <div class="mx-auto max-w-2xl">
+      <div
+        class="rounded-3xl border border-white/80 bg-white/60 p-8 shadow-xl shadow-[#d2bfaa]/20 backdrop-blur-sm md:p-12"
+      >
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/contact/thanks"
+          class="space-y-6"
+        >
+          <!-- Netlify 必須の隠しフィールド -->
+          <input type="hidden" name="form-name" value="contact" />
+
+          <!-- ハニーポット（スパム対策） -->
+          <p class="hidden">
+            <label>
+              Don't fill this out if you're human:
+              <input name="bot-field" />
+            </label>
+          </p>
+
+          <!-- お名前 -->
+          <div>
+            <label
+              for="name"
+              class="mb-1.5 ml-1 block text-xs font-medium uppercase tracking-[0.18em] text-[#b09073]"
+            >
+              お名前 <span class="text-[#c0796a]">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="山田 太郎"
+              class="w-full rounded-xl border border-[#e1d3c4] bg-white/70 px-4 py-3 text-sm text-[#3f241b] placeholder-[#c4ad9a] outline-none transition-all focus:border-[#b09073] focus:ring-2 focus:ring-[#b09073]/20"
+            />
+          </div>
+
+          <!-- メールアドレス -->
+          <div>
+            <label
+              for="email"
+              class="mb-1.5 ml-1 block text-xs font-medium uppercase tracking-[0.18em] text-[#b09073]"
+            >
+              メールアドレス <span class="text-[#c0796a]">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="example@mail.com"
+              class="w-full rounded-xl border border-[#e1d3c4] bg-white/70 px-4 py-3 text-sm text-[#3f241b] placeholder-[#c4ad9a] outline-none transition-all focus:border-[#b09073] focus:ring-2 focus:ring-[#b09073]/20"
+            />
+          </div>
+
+          <!-- お問い合わせ種別 -->
+          <div>
+            <label
+              for="subject"
+              class="mb-1.5 ml-1 block text-xs font-medium uppercase tracking-[0.18em] text-[#b09073]"
+            >
+              お問い合わせ種別
+            </label>
+            <select
+              id="subject"
+              name="subject"
+              class="w-full rounded-xl border border-[#e1d3c4] bg-white/70 px-4 py-3 text-sm text-[#3f241b] outline-none transition-all focus:border-[#b09073] focus:ring-2 focus:ring-[#b09073]/20"
+            >
+              <option value="">お選びください</option>
+              <option value="reservation">ご予約について</option>
+              <option value="catering">ケータリング・貸切について</option>
+              <option value="menu">メニューについて</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+
+          <!-- メッセージ -->
+          <div>
+            <label
+              for="message"
+              class="mb-1.5 ml-1 block text-xs font-medium uppercase tracking-[0.18em] text-[#b09073]"
+            >
+              メッセージ <span class="text-[#c0796a]">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              placeholder="ご希望やご質問をご記入ください"
+              class="w-full resize-none rounded-xl border border-[#e1d3c4] bg-white/70 px-4 py-3 text-sm text-[#3f241b] placeholder-[#c4ad9a] outline-none transition-all focus:border-[#b09073] focus:ring-2 focus:ring-[#b09073]/20"
+            ></textarea>
+          </div>
+
+          <!-- 注記 -->
+          <p class="text-[11px] leading-relaxed text-[#b09073]">
+            <span class="text-[#c0796a]">*</span> は必須項目です。
+            内容確認後、2〜3営業日以内にご返信いたします。
+          </p>
+
+          <!-- 送信ボタン -->
+          <button
+            type="submit"
+            class="w-full rounded-full bg-[#8b6a54] px-8 py-3.5 text-sm font-medium text-white shadow-md transition-all hover:bg-[#7a5d4a] active:scale-[0.98]"
+          >
+            この内容で送信する
+          </button>
+        </form>
+      </div>
+
+      <!-- トップへ戻るリンク -->
+      <div class="mt-10 text-center">
+        <a
+          href="/"
+          class="text-xs uppercase tracking-[0.25em] text-[#b09073] underline-offset-4 transition hover:text-[#8b6a54] hover:underline"
+        >
+          ← トップページへ戻る
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
